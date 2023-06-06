@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function alertDetails(animal) {
+        var animalType = animal.getAttribute("data-animal-type");
+        alert(animal.innerText + "是一种" + animalType + "。");
+      }
+    </script>
+  </head>
+  <body>
+    <p>点击某个物种来查看其类别</p>
+    <ul>
+      <li onclick="alertDetails(this)" data-animal-type="鸟类">喜鹊</li>
+      <li onclick="alertDetails(this)" data-animal-type="鱼类">金枪鱼</li>
+      <li onclick="alertDetails(this)" data-animal-type="蜘蛛">蝇虎</li>
+    </ul>
+  </body>
+</html>
