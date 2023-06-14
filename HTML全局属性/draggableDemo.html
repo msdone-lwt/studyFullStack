@@ -27,6 +27,12 @@
       }
 
       function drop(ev) {
+        /*
+        调用 preventDefault() 来阻止数据的浏览器默认处理方式（drop 事件的默认行为是以链接形式打开）
+        通过 dataTransfer.getData() 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据
+        被拖数据是被拖元素的 id ("drag1")
+        把被拖元素追加到放置元素中
+        */
         console.log("放置");
         ev.preventDefault();
         var data = ev.dataTransfer.getData("Text");
@@ -40,14 +46,17 @@
         });
       }
       function enter(ev) {
-        console.log("进入有效放置区域");
+        // ondragstart 会自动触发一次 ondragenter, 而图片不需要添加边框  这个 if 分支用于处理这个问题
+        if (ev.target.id == "drag1") {
+          console.log("id 为 drag1");
+          return;
+        }
+        console.log("进入有效放置区域", ev.target.id);
         var doms = document.querySelectorAll(".div1");
         doms.forEach((item) => {
           item.style.border = "1px solid #aaaaaa";
         });
-        if (ev.target.id != "drag1") {
-          ev.target.style.border = "1px solid #330eda";
-        }
+        ev.target.style.border = "1px solid #330eda";
       }
       function leave(ev) {
         console.log("离开有效放置区域");
@@ -55,9 +64,6 @@
         doms.forEach((item) => {
           item.style.border = "1px solid red";
         });
-      }
-      function d() {
-        console.log("AAAAAAAAAAAAAAAAAAA");
       }
     </script>
   </head>
@@ -72,7 +78,6 @@
       <img
         src="../img/w3school.gif"
         draggable="true"
-        style="border: 0px"
         ondragstart="drag(event)"
         ondragend="end(event)"
         id="drag1"
