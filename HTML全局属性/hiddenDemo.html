@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function toggle() {
+        var ele = document.querySelector("#test");
+        // 这里的方法名一定是 hasAttribute
+        // hasAttributes() 判断: dom 节点是否含有任何元素,返回 boolean
+        // hasAttribute("属性值"): 判断 dom 节点是否含有指定元素。返回 boolean
+        console.log(ele.hasAttribute("hidden"));
+        if (ele.hasAttribute("hidden")) {
+          ele.removeAttribute("hidden");
+        } else {
+          ele.setAttribute("hidden", "hidden");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p id="test" hidden>hidden</p>
+    <button onclick="toggle()">show/hidden</button>
+  </body>
+</html>
